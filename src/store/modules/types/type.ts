@@ -2,5 +2,8 @@
 
 export interface UserState {
   token: string | null
-  userLogin: Function
+  userLogin: Function,
+  userInfo: any,
+  getUserInfo: Function,
+  userLogout: Function
 }
