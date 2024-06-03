@@ -1,9 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div>
-    <router-view></router-view>
-  </div>
+  <div>spu</div>
 </template>
 
 <style lang="scss" scoped></style>
