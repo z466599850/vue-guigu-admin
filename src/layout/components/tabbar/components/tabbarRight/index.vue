@@ -3,7 +3,6 @@ import Dropdown from './dropdown/index.vue'
 import { useLayoutSettingStore, useUserStore } from '@/store'
 import { useRouter } from 'vue-router'
 
-
 const userStore = useUserStore()
 const layoutSettingStore = useLayoutSettingStore()
 const $router = useRouter()
@@ -34,7 +33,11 @@ export default {
   ></el-button>
   <el-button icon="FullScreen" circle @click="onFullScreen"></el-button>
   <el-button icon="Setting" circle></el-button>
-  <img class="tabbar-right-img" :src="userStore.userInfo?.avatar || ''" alt="" />
+  <img
+    class="tabbar-right-img"
+    :src="userStore.userInfo?.avatar || ''"
+    alt=""
+  />
 
   <Dropdown></Dropdown>
 </template>
