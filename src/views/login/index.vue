@@ -2,10 +2,13 @@
 import { User, Lock } from '@element-plus/icons-vue'
 import { reactive, ref } from 'vue'
 import { useUserStore } from '@/store'
-import { useRouter } from 'vue-router'
+import { useRouter,useRoute } from 'vue-router'
 import { ElNotification } from 'element-plus'
 import { getTime } from '@/utils/time.ts'
+
+
 const userStore = useUserStore()
+const $route = useRoute()
 const $router = useRouter()
 const loginForm = reactive({
   username: 'admin',
@@ -16,6 +19,7 @@ const loading = ref(false)
 // 表单校验
 const ruleFormRef = ref()
 
+console.log($route)
 const rulesForm = reactive({
   username: [
     { required: true, message: '用户名不能为空', trigger: 'change' },
@@ -33,7 +37,7 @@ const login = async () => {
   loading.value = true
   try {
     await userStore.userLogin(loginForm)
-    $router.push('/')
+    $router.push({path: ($route.query.redirect as string) || '/'})
     ElNotification({
       type: 'success',
       message: '欢迎回来',

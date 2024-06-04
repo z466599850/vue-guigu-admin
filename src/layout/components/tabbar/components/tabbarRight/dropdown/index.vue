@@ -9,6 +9,7 @@ const userStore = useUserStore()
 const onLogout = () => {
   // 退出登录
   userStore.userLogout()
+  console.log('看看我执行了吗')
   $router.push({ path: '/login', query: { redirect: $route.path } })
 }
 </script>
