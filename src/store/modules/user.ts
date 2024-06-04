@@ -1,14 +1,9 @@
 import { defineStore } from 'pinia'
-import { httpUserLogin, httpUserGetInfo } from '@/api/user'
-import type {
-  loginForm,
-  loginResponseData,
-  userResponseData,
-} from '@/api/user/type'
+import { httpUserLogin ,httpUserGetInfo } from '@/api/user'
+import type { loginForm, loginResponseData, userResponseData} from '@/api/user/type'
 import type { UserState } from './types/type.ts'
 import { reactive, ref } from 'vue'
-import { SET_TOKEN, GET_TOKEN, REMOVE_TOKEN } from '@/utils/token.ts'
-import { useRouter } from 'vue-router'
+import { SET_TOKEN, GET_TOKEN ,REMOVE_TOKEN} from '@/utils/token.ts'
 
 export const useUserStore = defineStore('user', (): UserState => {
   const token = ref(GET_TOKEN()) as any
@@ -30,20 +25,28 @@ export const useUserStore = defineStore('user', (): UserState => {
 
   // 获取用户详情信息
   const getUserInfo = async () => {
-    const res: userResponseData = await httpUserGetInfo()
 
-    if (res.code === 200) {
-      Object.assign(userInfo, res.data.checkUser)
-    }
+      const res: userResponseData = await httpUserGetInfo()
+
+      if(res.code === 200) {
+        Object.assign(userInfo,res.data.checkUser)
+        return 'ok'
+      }else {
+        return Promise.reject('获取用户信息失败')
+      }
+
+
+    
+    
   }
 
   // 退出系统
   const userLogout = () => {
-    Object.assign(userInfo, {
-      username: '',
-      avatar: '',
-    })
+    token.value = ''
+    Object.assign(userInfo, {})
     REMOVE_TOKEN()
+
+
   }
 
   return {
@@ -51,6 +54,6 @@ export const useUserStore = defineStore('user', (): UserState => {
     userInfo,
     userLogin,
     getUserInfo,
-    userLogout,
+    userLogout
   }
 })

@@ -2,10 +2,9 @@
 import { User, Lock } from '@element-plus/icons-vue'
 import { reactive, ref } from 'vue'
 import { useUserStore } from '@/store'
-import { useRouter,useRoute } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { ElNotification } from 'element-plus'
 import { getTime } from '@/utils/time.ts'
-
 
 const userStore = useUserStore()
 const $route = useRoute()
@@ -37,7 +36,7 @@ const login = async () => {
   loading.value = true
   try {
     await userStore.userLogin(loginForm)
-    $router.push({path: ($route.query.redirect as string) || '/'})
+    $router.push({ path: ($route.query.redirect as string) || '/' })
     ElNotification({
       type: 'success',
       message: '欢迎回来',

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useUserStore } from '@/store'
+import { ElNotification } from 'element-plus';
 import { useRouter, useRoute } from 'vue-router'
 
 const $router = useRouter()
@@ -11,6 +12,12 @@ const onLogout = () => {
   userStore.userLogout()
   console.log('看看我执行了吗')
   $router.push({ path: '/login', query: { redirect: $route.path } })
+  ElNotification({
+    type: 'success',
+    title: 'Hi，你好',
+    message: '退出成功！欢迎下次再来'
+  })
+
 }
 </script>
 <script lang="ts">
