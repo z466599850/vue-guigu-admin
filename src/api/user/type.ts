@@ -4,35 +4,38 @@ export interface loginForm {
   password: string
 }
 
-interface dataType {
-  token?: string
-  message?: string
-}
-
 // 登录接口返回数据类型
 export interface loginResponseData {
-  code: number
-  data: dataType
+  code: number,
+  data: string,
+  message: string,
+  ok: boolean
+
 }
+
 
 interface userInfoType {
-  userId: number
-  avatar: string
-  username: string
-  password: string
-  desc: string
-  roles: Array<string>
-  buttons: Array<string>
+  avatar: string,
+  buttons: Array<string>,
+  name: string,
+  roles: Array<string>,
   routes: Array<string>
-  token: string
 }
 
-interface userType {
-  checkUser: userInfoType
-}
 
 // 定义服务器返回用户信息相关的数据类型
 export interface userResponseData {
-  code: number
-  data: userType
+  code: number,
+  data: userInfoType,
+  message: string,
+  ok: boolean
+}
+
+
+// 定义服务器返回退出登录相关的类型
+export interface userLogoutResponseData {
+  code: number,
+  message: string,
+  data: null,
+  ok: boolean
 }
